@@ -1,0 +1,5 @@
+.git
+.nox
+.ipynb_checkpoints
+__pycache__
+.local

@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dfocs"
+description = "dataframes of documentation"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "tonyfast", email = "tony.fast@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+]
+dependencies = ["beautifulsoup4", "distributed", "pathspec", "dask[dataframe]", "lxml", "markdown-it-py"]
+dynamic = ["version"]
+
+
+[project.optional-dependencies]
+test = ["nbval", "pytest", "pytest-cov"]
+
+
+[project.urls]
+Documentation = "https://github.com/deathbeds/dfocs#readme"
+Issues = "https://github.com/deathbeds/dfocs/issues"
+Source = "https://github.com/deathbeds/dfocs"
+
+# versioning
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/dfocs/_version.py"
+
+
+[tool.hatch.envs.test]
+features = ["test"]
+
+[tool.hatch.envs.test.scripts]
+run = "pytest --nbval --current-env --cov-report=term-missing --cov-config=pyproject.toml --cov=dfocs --cov=tests {args}"
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "dfocs/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.doit]
