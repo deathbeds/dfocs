@@ -1,0 +1,56 @@
+{% set title = title or path -%}
+<!DOCTYPE html>
+<html lang="en">
+{# i18n is part of the this challenge too. #}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <header><!--breadcrumbs--></header>
+    <main id="/">
+        <header>
+            {%- set id = title | slug -%}
+            <h1 id={{id}}><a href=#{{id}}>{{title}}</a></h1>
+            <details>
+                <summary>table of contents</summary>
+                <nav>{{toc.splitlines(True)[1:] | join | dedent | markdown}}</nav>
+            </details>
+        </header>
+        {{main}}
+        <footer>
+            {#- https://html.spec.whatwg.org/multipage/sections.html#the-address-element -#}
+            {#- http://html5doctor.com/time-and-data-element/ -#}
+            {#- https://brucelawson.co.uk/2012/best-of-time/ -#}
+            <address>
+                <ul id=authors>
+                    {%- for author in authors or [] -%}
+                    <li><a href="mailto:{{author.email}}" rel=author>{{author.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </address>
+            {% if created_at %}<time pubdate datetime="{{created_at.isoformat()}}">{{created_at.ctime()}}</time>
+            {% if created_at != updated_at %}
+            <time itemprop=dateModified datetime="{{updated_at.isoformat()}}">{{updated_at.ctime()}}</time>
+            {% endif %}
+            {% endif %}
+        </footer>
+        <footer><a href="#/">Scroll to top</a></footer>
+    </main>
+    <footer>
+        <!--license -->
+    </footer>
+</body>
+
+<script>
+    document.querySelectorAll('[href^="#"]').forEach((x) => {
+        x.addEventListener("focus", () => { history.replaceState({}, x.innerText, x.href); })
+    });
+    document.querySelectorAll('.highlight').forEach((x) => {
+        x.setAttribute("oncopy", 'navigator.clipboard.writeText(this.innerText)');
+    });
+</script>

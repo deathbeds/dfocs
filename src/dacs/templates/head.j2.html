@@ -1,0 +1,125 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+{% if url %}<base href="{{url}}">{% endif %}
+{%- for style in styles or "" -%}
+{% if all(map(style.__contains__, "{}") %}
+<style>{{style}}</style>
+{% else -%}
+<link rel="stylesheet" href="{{style}}">    
+{% endif -%}
+{%- endfor -%}
+
+<!-- Theme Color for Chrome, Firefox OS and Opera -->
+{% if color %}<meta name="theme-color" content="{{color.primary}}">{% endif %}
+
+<!-- Short description of the document (limit to 150 characters) -->
+<!-- This content *may* be used as a part of search engine results. -->
+{% if description %}<meta name="description" content="{{description}}">{% endif %}
+
+<!-- Control the behavior of search engine crawling and indexing -->
+<!-- <meta name="robots" content="index,follow"><!-- All Search Engines -->
+<meta name="googlebot" content="index,follow">Google Specific -->
+
+<!-- Identify the software used to build the document (i.e. - WordPress, Dreamweaver) -->
+<meta name="generator" content="Dacs">
+
+<!-- Short description of your document's subject -->
+{% if subject %}<meta name="subject" content="{{subject}}">{% endif %}
+
+{% if location %}
+<meta name="ICBM" content="latitude, longitude">
+<meta name="geo.position" content="latitude;longitude">
+<meta name="geo.region" content="country[-state]"><!-- Country code (ISO 3166-1): mandatory, state code (ISO 3166-2): optional; eg. content="US" / content="US-NY" -->
+<meta name="geo.placename" content="city/town"><!-- eg. content="New York City" -->
+{% endif %}
+
+
+<!-- Helps prevent duplicate content issues -->
+<!-- <link rel="canonical" href="https://example.com/article/?page=2"> -->
+
+<!-- Links to information about the author(s) of the document -->
+<!-- <link rel="author" href="humans.txt"> -->
+
+<!-- Refers to a copyright statement that applies to the link's context -->
+<!-- <link rel="license" href="copyright.html"> -->
+
+<!-- Gives a reference to a location in your document that may be in another language -->
+<!-- <link rel="alternate" href="https://es.example.com/" hreflang="es"> -->
+
+<!-- Provides information about an author or another person -->
+<!-- <link rel="me" href="https://google.com/profiles/thenextweb" type="text/html">
+<link rel="me" href="mailto:name@example.com">
+<link rel="me" href="sms:+15035550125"> -->
+
+<!-- Links to a document that describes a collection of records, documents, or other materials of historical interest -->
+<!-- <link rel="archives" href="https://example.com/archives/"> -->
+
+<!-- Links to top level resource in an hierarchical structure -->
+<!-- <link rel="index" href="https://example.com/article/"> -->
+
+<!-- Provides a self reference - useful when the document has multiple possible references -->
+<!-- <link rel="self" type="application/atom+xml" href="https://example.com/atom.xml">s -->
+
+<!-- The first, last, previous, and next documents in a series of documents, respectively -->
+<!-- <link rel="first" href="https://example.com/article/">
+<link rel="last" href="https://example.com/article/?page=42">
+<link rel="prev" href="https://example.com/article/?page=1">
+<link rel="next" href="https://example.com/article/?page=3"> -->
+
+<!-- Notifies a URL when you link to it on your document -->
+<!-- <link rel="webmention" href="https://example.com/webmention"> -->
+
+<!-- Enables posting to your own domain using a Micropub client -->
+<!-- <link rel="micropub" href="https://example.com/micropub"> -->
+
+<!-- Open Search -->
+<!-- <link rel="search" href="/open-search.xml" type="application/opensearchdescription+xml" title="Search Title"> -->
+
+<!-- Feeds -->
+{% if rss %}<link rel="alternate" href="{{rss}}" type="application/rss+xml" title="RSS">{% endif %}
+{% if atom %}<link rel="alternate" href="{{atom}}" type="application/atom+xml" title="Atom 0.3">{% endif %}
+
+<!-- Prefetching, preloading, prebrowsing -->
+<!-- More info: https://css-tricks.com/prefetching-preloading-prebrowsing/ -->
+<!-- <link rel="dns-prefetch" href="//example.com/">
+<link rel="preconnect" href="https://www.example.com/">
+<link rel="prefetch" href="https://www.example.com/">
+<link rel="prerender" href="https://example.com/">
+<link rel="preload" href="image.png" as="image"> -->
+
+
+<!-- <meta property="og:url" content="https://example.com/page.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Content Title">
+<meta property="og:image" content="https://example.com/image.jpg">
+<meta property="og:image:alt" content="A description of what is in the image (not a caption)">
+<meta property="og:description" content="Description Here">
+<meta property="og:site_name" content="Site Name">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content=""> -->
+
+
+<!-- <link rel="author" href="">
+<link rel="publisher" href="">
+<meta itemprop="name" content="Content Title">
+<meta itemprop="description" content="Content description less than 200 characters">
+<meta itemprop="image" content="https://example.com/image.jpg">
+
+
+<meta charset="utf-8">
+<meta property="op:markup_version" content="v1.0">
+
+<!-- The URL of the web version of your article -->
+<link rel="canonical" href="https://example.com/article.html">
+
+<meta itemprop="name" content="share title">
+<meta itemprop="image" content="http://imgcache.qq.com/qqshow/ac/v4/global/logo.png">
+<meta name="description" itemprop="description" content="{{descirption}}">
+
+
+
+{% if color %}<meta name="theme-color" content="#E64545">{% endif %}
+
+<!-- Locks the screen into the specified orientation -->
+<meta name="screen-orientation" content="landscape/portrait"> -->

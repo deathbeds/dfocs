@@ -1,0 +1,29 @@
+{%- set priority = [
+"application/pdf",
+"image/svg+xml",
+"image/png",
+"text/html",
+"text/markdown",
+"image/jpeg",
+"text/plain",
+"text/latex",
+"application/javascript",
+"application/vnd.jupyter.widget-view+json"
+] -%}
+{%- if isinstance(output, list) -%}
+    {%- for output in outputs or () -%}
+        {%- for type in priority -%}
+            {%- if "data" in output -%}
+                {%- set data = output["data"][type] -%}
+                {%- if type == "text/markdown "-%}
+                {{markdown("".join(data))}}
+                {%- elif type in "text/html "-%}
+                {{ data | join }}
+                {%- elif type in "text/plain "-%}
+                <pre><samp>{{data}}</samp></pre>
+                {%- endif -%}
+            {%- endif -%}
+            {% break %}
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endif -%}

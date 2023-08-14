@@ -1,0 +1,18 @@
+{% macro tag(tag, body=None, properties=None, aria=None, data=None) -%}
+<{{tag}}
+{%- for k, v in (kwargs or {}).items()%} {{k}}="{{v != None and v.__str__() or ""|escape}}"{% endfor -%}
+{%- for k, v in (aria or {}).items()%} aria-{{k}}="{{v != None and v.__str__() or ""|escape}}"{% endfor -%}
+{%- for k, v in (data or {}).items()%} data-{{k}}="{{v != None and v.__str__() or ""|escape}}"{% endfor -%}>
+    {{body}}
+</{{tag}}>
+{%- endmacro %}
+
+{% macro article(body, label=None, description=None, posinset=None, setsize=None) -%}
+{{tag("article", body, properties=kwargs, aria={"posinset": posinset, "setsize": setsize, "label": label, "description": description})}}
+{%- endmacro %}
+
+{% macro feed(body)%}
+{{tag("section", body, role="feed")}}
+{% endmacro %}
+
+

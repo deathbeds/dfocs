@@ -1,0 +1,7 @@
+{%- from "templates/components.html.j2" import feed -%}
+<main>
+    <header>
+        <details><summary>{{path.stem}} contents</summary>{{toc|markdown}}</details>
+    </header>
+    {{feed(html)}}
+</main>

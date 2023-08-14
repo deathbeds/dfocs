@@ -1,0 +1,29 @@
+{% set env = env | default({}) -%}
+{%- set input -%}
+{%- if cell_type == "markdown" -%}
+{{markdown("".join(source or ""), env)}}
+{%- elif cell_type == "code" -%}
+{{"".join(source or "") | highlight}}
+{%- elif cell_type == "raw" -%}
+{{"".join(source or "")}}
+{%- endif -%}
+{%- endset -%}
+{% set ct = int((count or 0)+1) %}
+{% set id = id %}
+
+<article aria-posinset="{{(count or 0)+1}}" aria-labelledby="{{id}}-header">
+    <header id="{{id}}-header">
+        <label>{{cell_type.capitalize()}}</label><label>{{ct}}</label>
+    </header>
+    <form></form>
+    {{input}}
+    {% include "outputs.html.j2" %}
+    <footer>
+        <output>{{int(execution_count or 0) or ""}}</output>
+        {% if created_at %}<time pubdate datetime="{{created_at.isoformat()}}">{{created_at}}</time>
+        {% if created_at != updated_at %}
+        <time itemprop=dateModified datetime="{{updated_at.isoformat()}}">{{updated_at}}</time>
+        {% endif %}
+        {% endif %}
+    </footer>
+</article>

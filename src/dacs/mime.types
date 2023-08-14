@@ -1,0 +1,5 @@
+application/x-ipynb+json ipynb
+text/markdown md markdown
+text/toml toml
+application/x-yaml yaml yml
+text/ini ini cfg
